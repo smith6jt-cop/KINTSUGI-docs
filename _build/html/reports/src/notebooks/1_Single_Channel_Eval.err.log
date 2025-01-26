@@ -1,0 +1,85 @@
+Traceback (most recent call last):
+  File "C:\Users\smith6jt\miniforge3\envs\KINTSUGI\lib\site-packages\jupyter_cache\executors\utils.py", line 58, in single_nb_execution
+    executenb(
+  File "C:\Users\smith6jt\miniforge3\envs\KINTSUGI\lib\site-packages\nbclient\client.py", line 1314, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "C:\Users\smith6jt\miniforge3\envs\KINTSUGI\lib\site-packages\jupyter_core\utils\__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+  File "C:\Users\smith6jt\miniforge3\envs\KINTSUGI\lib\asyncio\base_events.py", line 647, in run_until_complete
+    return future.result()
+  File "C:\Users\smith6jt\miniforge3\envs\KINTSUGI\lib\site-packages\nbclient\client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "C:\Users\smith6jt\miniforge3\envs\KINTSUGI\lib\site-packages\nbclient\client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "C:\Users\smith6jt\miniforge3\envs\KINTSUGI\lib\site-packages\nbclient\client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+root = tk.Tk()
+root.withdraw()
+
+user_choice = simpledialog.askstring("Shortened name", "Enter shortened file name with _raw at end")
+image_dir_long = filedialog.askdirectory()
+head_dir, tail_dir = os.path.split(image_dir_long)
+base_dir, _ = os.path.split(head_dir)
+
+try:  
+    os.rename(image_dir_long, os.path.join(head_dir, user_choice))
+except FileNotFoundError:
+    print("The file or directory does not exist.")
+except PermissionError:
+    print("you don't have permissions to rename the file")
+except OSError as error:
+    print(f"Error: {error}")
+
+if os.path.isdir(os.path.join(head_dir, user_choice)) == True:
+    image_dir = os.path.join(head_dir, user_choice)
+    print(f"{image_dir_long} renamed to {image_dir}")
+
+else:
+    print("Error in renaming.")
+    
+stitch_dir = image_dir.replace('_raw', '_BaSiC_Stitched')
+meta_dir = image_dir.replace('_raw', '_meta')
+os.makedirs(stitch_dir, exist_ok=True)
+os.makedirs(meta_dir, exist_ok=True)
+
+if os.path.isdir(stitch_dir) == True:
+    print(f"Stitching output folder: {stitch_dir} created successfully.")
+
+else:
+    print("Stitching output folder not created.")
+
+if os.path.isdir(meta_dir) == True:
+    print(f"Metadata folder: {meta_dir} created successfully.  Move metadata files to metadata folder.")
+
+else:
+    print("Metadata folder not created.")
+------------------
+
+
+[1;31m---------------------------------------------------------------------------[0m
+[1;31mTypeError[0m                                 Traceback (most recent call last)
+Cell [1;32mIn[4], line 10[0m
+[0;32m      7[0m base_dir, _ [38;5;241m=[39m os[38;5;241m.[39mpath[38;5;241m.[39msplit(head_dir)
+[0;32m      9[0m [38;5;28;01mtry[39;00m:  
+[1;32m---> 10[0m     os[38;5;241m.[39mrename(image_dir_long, [43mos[49m[38;5;241;43m.[39;49m[43mpath[49m[38;5;241;43m.[39;49m[43mjoin[49m[43m([49m[43mhead_dir[49m[43m,[49m[43m [49m[43muser_choice[49m[43m)[49m)
+[0;32m     11[0m [38;5;28;01mexcept[39;00m [38;5;167;01mFileNotFoundError[39;00m:
+[0;32m     12[0m     [38;5;28mprint[39m([38;5;124m"[39m[38;5;124mThe file or directory does not exist.[39m[38;5;124m"[39m)
+
+File [1;32m~\miniforge3\envs\KINTSUGI\lib\ntpath.py:117[0m, in [0;36mjoin[1;34m(path, *paths)[0m
+[0;32m    115[0m     [38;5;28;01mreturn[39;00m result_drive [38;5;241m+[39m result_path
+[0;32m    116[0m [38;5;28;01mexcept[39;00m ([38;5;167;01mTypeError[39;00m, [38;5;167;01mAttributeError[39;00m, [38;5;167;01mBytesWarning[39;00m):
+[1;32m--> 117[0m     [43mgenericpath[49m[38;5;241;43m.[39;49m[43m_check_arg_types[49m[43m([49m[38;5;124;43m'[39;49m[38;5;124;43mjoin[39;49m[38;5;124;43m'[39;49m[43m,[49m[43m [49m[43mpath[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[43mpaths[49m[43m)[49m
+[0;32m    118[0m     [38;5;28;01mraise[39;00m
+
+File [1;32m~\miniforge3\envs\KINTSUGI\lib\genericpath.py:152[0m, in [0;36m_check_arg_types[1;34m(funcname, *args)[0m
+[0;32m    150[0m         hasbytes [38;5;241m=[39m [38;5;28;01mTrue[39;00m
+[0;32m    151[0m     [38;5;28;01melse[39;00m:
+[1;32m--> 152[0m         [38;5;28;01mraise[39;00m [38;5;167;01mTypeError[39;00m([38;5;124mf[39m[38;5;124m'[39m[38;5;132;01m{[39;00mfuncname[38;5;132;01m}[39;00m[38;5;124m() argument must be str, bytes, or [39m[38;5;124m'[39m
+[0;32m    153[0m                         [38;5;124mf[39m[38;5;124m'[39m[38;5;124mos.PathLike object, not [39m[38;5;132;01m{[39;00ms[38;5;241m.[39m[38;5;18m__class__[39m[38;5;241m.[39m[38;5;18m__name__[39m[38;5;132;01m!r}[39;00m[38;5;124m'[39m) [38;5;28;01mfrom[39;00m [38;5;28;01mNone[39;00m
+[0;32m    154[0m [38;5;28;01mif[39;00m hasstr [38;5;129;01mand[39;00m hasbytes:
+[0;32m    155[0m     [38;5;28;01mraise[39;00m [38;5;167;01mTypeError[39;00m([38;5;124m"[39m[38;5;124mCan[39m[38;5;124m'[39m[38;5;124mt mix strings and bytes in path components[39m[38;5;124m"[39m) [38;5;28;01mfrom[39;00m [38;5;28;01mNone[39;00m
+
+[1;31mTypeError[0m: join() argument must be str, bytes, or os.PathLike object, not 'NoneType'
+
