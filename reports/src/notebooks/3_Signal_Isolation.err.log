@@ -1,0 +1,105 @@
+Traceback (most recent call last):
+  File "/usr/local/python/3.12.1/lib/python3.12/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/home/codespace/.local/lib/python3.12/site-packages/nbclient/client.py", line 1314, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.local/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/python/3.12.1/lib/python3.12/asyncio/base_events.py", line 684, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/codespace/.local/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/home/codespace/.local/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/codespace/.local/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from skimage.io import imread
+from skimage.io import imsave
+import os
+import numpy as np
+import Kview
+import stackview
+%matplotlib widget
+import matplotlib.pyplot as plt
+plt.rcParams.update({
+    'figure.dpi': 100,
+    'figure.autolayout': True
+})
+from skimage import filters
+from skimage import measure
+from skimage import exposure
+from skimage import morphology
+import pandas as pd
+from glob import glob
+from datetime import datetime
+import xml.etree.ElementTree as ET
+import tifffile
+current_dateTime = datetime.now()
+import warnings
+warnings.filterwarnings('ignore')
+
+
+def ini_params(im1, im2, Pixel_Cutoff:int=0, Blank_Percentile:float=0.0):
+
+    im2_clip = np.clip(im2, Pixel_Cutoff, im2.max())
+    im2_clip[im2_clip <= Pixel_Cutoff] = 0
+    
+    im3 = im1 - (np.minimum(im1, im2_clip * Blank_Percentile))
+    
+    return im3
+
+def clipped_signal(im_s, disk1:int=1):
+
+    im_s2 = im_s.copy()
+
+    im_s2 = morphology.erosion(im_s2, morphology.disk(disk1))
+
+    return im_s2
+
+def fill_holes(im_s, value:int=100):
+
+    im_s2 = im_s.copy()
+
+    im_s2 = np.where(im_s2 == 0, value, im_s2)
+
+    return im_s2
+
+def find_gauss(im_g1, sigma_value:int=10):
+
+    im_g2 = filters.gaussian(im_g1, sigma=sigma_value, preserve_range=True)
+    return im_g2
+
+def clipped_blank(im_cl1, Gauss_low:int = 0, Gauss_high:int = 65535):
+
+    im_cl2 = im_cl1.copy()
+
+    im_cl2[Gauss_low >= im_cl2] = 0  
+    im_cl2[im_cl2 >= Gauss_high] = 0
+
+    return im_cl2
+
+def final_factor(im_f1, im_f2, low, high, Gauss_Percentile:float=0.2):
+
+    im_f2[low >= im_f2] = 0  
+    im_f2[im_f2 >= high] = 0
+
+    im_f3 = im_f1 - (np.minimum(im_f1, im_f2 * Gauss_Percentile))
+    
+    return im_f3
+------------------
+
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+Cell [0;32mIn[1], line 1[0m
+[0;32m----> 1[0m [38;5;28;01mfrom[39;00m [38;5;21;01mskimage[39;00m[38;5;21;01m.[39;00m[38;5;21;01mio[39;00m [38;5;28;01mimport[39;00m imread
+[1;32m      2[0m [38;5;28;01mfrom[39;00m [38;5;21;01mskimage[39;00m[38;5;21;01m.[39;00m[38;5;21;01mio[39;00m [38;5;28;01mimport[39;00m imsave
+[1;32m      3[0m [38;5;28;01mimport[39;00m [38;5;21;01mos[39;00m
+
+[0;31mModuleNotFoundError[0m: No module named 'skimage'
+
