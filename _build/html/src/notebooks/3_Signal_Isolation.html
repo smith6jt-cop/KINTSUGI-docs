@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -468,6 +468,18 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">skimage.io</span> <span class="kn">import</span> <span class="n">imread</span><span class="p">,</span> <span class="n">imsave</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">os</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;skimage&#39;
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 </section>
@@ -548,57 +560,6 @@ Processed folder is C:\Users\smith6jt\KINTSUGI\data\1904_CC2B_Processed.
     <span class="n">channel_data</span> <span class="o">=</span> <span class="n">ome_tiff</span><span class="p">[</span><span class="n">channel_index</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
     <span class="n">channel_image_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">sig_dir</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">channel_name</span><span class="si">}</span><span class="s1">.tif&#39;</span><span class="p">)</span>
     <span class="n">imsave</span><span class="p">(</span><span class="n">channel_image_path</span><span class="p">,</span> <span class="n">channel_data</span><span class="p">,</span> <span class="n">plugin</span><span class="o">=</span><span class="s1">&#39;tifffile&#39;</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="n">metadata</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="nn">~\AppData\Local\Temp\ipykernel_19340\4071042450.py</span> in <span class="ni">?</span><span class="nt">()</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">ome_tiff_path</span> <span class="o">=</span> <span class="n">reg_dir</span> <span class="o">+</span> <span class="s2">&quot;merged.ome.tif&quot;</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">ome_tiff</span> <span class="o">=</span> <span class="n">tifffile</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">ome_tiff_path</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> 
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="k">with</span> <span class="n">tifffile</span><span class="o">.</span><span class="n">TiffFile</span><span class="p">(</span><span class="n">ome_tiff_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">tif</span><span class="p">:</span>
-
-<span class="nn">~\miniforge3\envs\KINTSUGI\lib\site-packages\tifffile\tifffile.py</span> in <span class="ni">?</span><span class="nt">(files, selection, aszarr, key, series, level, squeeze, maxworkers, buffersize, mode, name, offset, size, pattern, axesorder, categories, imread, sort, container, chunkshape, dtype, axestiled, ioworkers, chunkmode, fillvalue, zattrs, multiscales, omexml, out, out_inplace, _multifile, _useframes, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1074</span> 
-<span class="g g-Whitespace">   </span><span class="mi">1075</span>         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">files</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1076</span>             <span class="n">files</span><span class="p">,</span> <span class="n">collections</span><span class="o">.</span><span class="n">abc</span><span class="o">.</span><span class="n">Sequence</span>
-<span class="g g-Whitespace">   </span><span class="mi">1077</span>         <span class="p">):</span>
-<span class="ne">-&gt; </span><span class="mi">1078</span>             <span class="k">with</span> <span class="n">TiffFile</span><span class="p">(</span>
-<span class="g g-Whitespace">   </span><span class="mi">1079</span>                 <span class="n">files</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1080</span>                 <span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1081</span>                 <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
-
-<span class="nn">~\miniforge3\envs\KINTSUGI\lib\site-packages\tifffile\tifffile.py</span> in <span class="ni">?</span><span class="nt">(self, file, mode, name, offset, size, omexml, _multifile, _useframes, _parent, **is_flags)</span>
-<span class="g g-Whitespace">   </span><span class="mi">4072</span>                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;invalid OME-XML&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">4073</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_omexml</span> <span class="o">=</span> <span class="n">omexml</span>
-<span class="g g-Whitespace">   </span><span class="mi">4074</span>             <span class="bp">self</span><span class="o">.</span><span class="n">is_ome</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="g g-Whitespace">   </span><span class="mi">4075</span> 
-<span class="ne">-&gt; </span><span class="mi">4076</span>         <span class="n">fh</span> <span class="o">=</span> <span class="n">FileHandle</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="n">offset</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">size</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">4077</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_fh</span> <span class="o">=</span> <span class="n">fh</span>
-<span class="g g-Whitespace">   </span><span class="mi">4078</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_multifile</span> <span class="o">=</span> <span class="kc">True</span> <span class="k">if</span> <span class="n">_multifile</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="nb">bool</span><span class="p">(</span><span class="n">_multifile</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">4079</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_files</span> <span class="o">=</span> <span class="p">{</span><span class="n">fh</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="bp">self</span><span class="p">}</span>
-
-<span class="nn">~\miniforge3\envs\KINTSUGI\lib\site-packages\tifffile\tifffile.py</span> in <span class="ni">?</span><span class="nt">(self, file, mode, name, offset, size)</span>
-<span class="g g-Whitespace">  </span><span class="mi">14258</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_offset</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="k">if</span> <span class="n">offset</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">offset</span>
-<span class="g g-Whitespace">  </span><span class="mi">14259</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_size</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="k">if</span> <span class="n">size</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">size</span>
-<span class="g g-Whitespace">  </span><span class="mi">14260</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_close</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="g g-Whitespace">  </span><span class="mi">14261</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_lock</span> <span class="o">=</span> <span class="n">NullContext</span><span class="p">()</span>
-<span class="ne">&gt; </span><span class="mi">14262</span>         <span class="bp">self</span><span class="o">.</span><span class="n">open</span><span class="p">()</span>
-<span class="g g-Whitespace">  </span><span class="mi">14263</span>         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fh</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-
-<span class="nn">~\miniforge3\envs\KINTSUGI\lib\site-packages\tifffile\tifffile.py</span> in <span class="ni">?</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">  </span><span class="mi">14277</span>             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mode</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">{</span><span class="s1">&#39;rb&#39;</span><span class="p">,</span> <span class="s1">&#39;r+b&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">,</span> <span class="s1">&#39;xb&#39;</span><span class="p">}:</span>
-<span class="g g-Whitespace">  </span><span class="mi">14278</span>                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;invalid mode </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_mode</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">  </span><span class="mi">14279</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_file</span><span class="p">)</span>
-<span class="g g-Whitespace">  </span><span class="mi">14280</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_dir</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_file</span><span class="p">)</span>
-<span class="ne">&gt; </span><span class="mi">14281</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_fh</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span>
-<span class="g g-Whitespace">  </span><span class="mi">14282</span>                 <span class="bp">self</span><span class="o">.</span><span class="n">_file</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mode</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="kc">None</span>
-<span class="g g-Whitespace">  </span><span class="mi">14283</span>             <span class="p">)</span>  <span class="c1"># type: ignore</span>
-<span class="g g-Whitespace">  </span><span class="mi">14284</span>             <span class="bp">self</span><span class="o">.</span><span class="n">_close</span> <span class="o">=</span> <span class="kc">True</span>
-
-<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;C:\\Users\\smith6jt\\KINTSUGI\\data\\1904_CC2B_Registrationmerged.ome.tif&#39;
 </pre></div>
 </div>
 </div>
@@ -986,7 +947,7 @@ If no subtraction was necessary, enter 0 for both and then go to 6. to visualize
         },
         kernelOptions: {
             name: "python3",
-            path: "./src\notebooks"
+            path: "./src/notebooks"
         },
         predefinedOutput: true
     }

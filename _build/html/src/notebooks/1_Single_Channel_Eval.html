@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -456,6 +456,19 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">os</span> <span class="k">as</span> <span class="nn">os</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">tqdm.notebook</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">tkinter</span> <span class="k">as</span> <span class="nn">tk</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="n">filedialog</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;tqdm&#39;
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 </section>
@@ -547,34 +560,6 @@ Meta folder is C:\Users\smith6jt\KINTSUGI\data\1904_CC2B_meta.
 
 <span class="k">else</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Metadata folder not created.&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">line</span> <span class="mi">10</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="n">base_dir</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">head_dir</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="k">try</span><span class="p">:</span>  
-<span class="ne">---&gt; </span><span class="mi">10</span>     <span class="n">os</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">image_dir_long</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">head_dir</span><span class="p">,</span> <span class="n">user_choice</span><span class="p">))</span>
-<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">12</span>     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The file or directory does not exist.&quot;</span><span class="p">)</span>
-
-<span class="nn">File ~\miniforge3\envs\KINTSUGI\lib\ntpath.py:117,</span> in <span class="ni">join</span><span class="nt">(path, *paths)</span>
-<span class="g g-Whitespace">    </span><span class="mi">115</span>     <span class="k">return</span> <span class="n">result_drive</span> <span class="o">+</span> <span class="n">result_path</span>
-<span class="g g-Whitespace">    </span><span class="mi">116</span> <span class="k">except</span> <span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="ne">AttributeError</span><span class="p">,</span> <span class="ne">BytesWarning</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">117</span>     <span class="n">genericpath</span><span class="o">.</span><span class="n">_check_arg_types</span><span class="p">(</span><span class="s1">&#39;join&#39;</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="o">*</span><span class="n">paths</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">118</span>     <span class="k">raise</span>
-
-<span class="nn">File ~\miniforge3\envs\KINTSUGI\lib\genericpath.py:152,</span> in <span class="ni">_check_arg_types</span><span class="nt">(funcname, *args)</span>
-<span class="g g-Whitespace">    </span><span class="mi">150</span>         <span class="n">hasbytes</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="g g-Whitespace">    </span><span class="mi">151</span>     <span class="k">else</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">152</span>         <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">funcname</span><span class="si">}</span><span class="s1">() argument must be str, bytes, or &#39;</span>
-<span class="g g-Whitespace">    </span><span class="mi">153</span>                         <span class="sa">f</span><span class="s1">&#39;os.PathLike object, not </span><span class="si">{</span><span class="n">s</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">!r}</span><span class="s1">&#39;</span><span class="p">)</span> <span class="kn">from</span> <span class="kc">None</span>
-<span class="g g-Whitespace">    </span><span class="mi">154</span> <span class="k">if</span> <span class="n">hasstr</span> <span class="ow">and</span> <span class="n">hasbytes</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">155</span>     <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Can&#39;t mix strings and bytes in path components&quot;</span><span class="p">)</span> <span class="kn">from</span> <span class="kc">None</span>
-
-<span class="ne">TypeError</span>: join() argument must be str, bytes, or os.PathLike object, not &#39;NoneType&#39;
 </pre></div>
 </div>
 </div>
@@ -2181,7 +2166,7 @@ Platform: Intel(R) OpenCL
         },
         kernelOptions: {
             name: "python3",
-            path: "./src\notebooks"
+            path: "./src/notebooks"
         },
         predefinedOutput: true
     }

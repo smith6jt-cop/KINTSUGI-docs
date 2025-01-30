@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -448,68 +448,15 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">20</span>
-<span class="g g-Whitespace">     </span><span class="mi">17</span> <span class="kn">from</span> <span class="nn">tqdm.notebook</span> <span class="kn">import</span> <span class="n">tqdm</span>
-<span class="g g-Whitespace">     </span><span class="mi">18</span> <span class="kn">import</span> <span class="nn">stackview</span>
-<span class="ne">---&gt; </span><span class="mi">20</span> <span class="kn">from</span> <span class="nn">ark.phenotyping</span> <span class="kn">import</span> <span class="p">(</span><span class="n">cell_cluster_utils</span><span class="p">,</span> <span class="n">cell_meta_clustering</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">21</span>                              <span class="n">cell_som_clustering</span><span class="p">,</span> <span class="n">weighted_channel_comp</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">22</span> <span class="kn">from</span> <span class="nn">ark.utils</span> <span class="kn">import</span> <span class="n">data_utils</span><span class="p">,</span> <span class="n">plot_utils</span>
-<span class="g g-Whitespace">     </span><span class="mi">23</span> <span class="kn">from</span> <span class="nn">ark.utils.metacluster_remap_gui</span> <span class="kn">import</span> <span class="p">(</span><span class="n">MetaClusterGui</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">24</span>                                              <span class="n">colormap_helper</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">25</span>                                              <span class="n">metaclusterdata_from_files</span><span class="p">)</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">6</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">warnings</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">6</span> <span class="kn">import</span> <span class="nn">feather</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
-<span class="n">File</span> <span class="o">~</span>\<span class="n">KINTSUGI</span><span class="o">-</span><span class="n">docs</span>\<span class="n">src</span>\<span class="n">notebooks</span>\<span class="n">ark</span>\<span class="n">phenotyping</span>\<span class="n">weighted_channel_comp</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">11</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">stats</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="kn">from</span> <span class="nn">alpineer</span> <span class="kn">import</span> <span class="n">io_utils</span><span class="p">,</span> <span class="n">misc_utils</span>
-<span class="ne">---&gt; </span><span class="mi">11</span> <span class="kn">from</span> <span class="nn">ark.analysis</span> <span class="kn">import</span> <span class="n">visualize</span>
-<span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="k">def</span> <span class="nf">compute_p2c_weighted_channel_avg</span><span class="p">(</span><span class="n">pixel_channel_avg</span><span class="p">,</span> <span class="n">channels</span><span class="p">,</span> <span class="n">cell_counts</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">15</span>                                      <span class="n">fovs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pixel_cluster_col</span><span class="o">=</span><span class="s1">&#39;pixel_meta_cluster_rename&#39;</span><span class="p">):</span>
-<span class="g g-Whitespace">     </span><span class="mi">16</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Compute the average marker expression for each cell weighted by pixel cluster</span>
-<span class="g g-Whitespace">     </span><span class="mi">17</span><span class="sd"> </span>
-<span class="g g-Whitespace">     </span><span class="mi">18</span><span class="sd">     This expression is weighted by the pixel SOM/meta cluster counts. So for each cell,</span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">     </span><span class="mi">43</span><span class="sd">             Returns the average marker expression for each cell in the dataset</span>
-<span class="g g-Whitespace">     </span><span class="mi">44</span><span class="sd">     &quot;&quot;&quot;</span>
-
-<span class="n">File</span> <span class="o">~</span>\<span class="n">KINTSUGI</span><span class="o">-</span><span class="n">docs</span>\<span class="n">src</span>\<span class="n">notebooks</span>\<span class="n">ark</span>\<span class="n">analysis</span>\<span class="n">visualize</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">5</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-<span class="ne">----&gt; </span><span class="mi">5</span> <span class="kn">import</span> <span class="nn">spatial_lda.visualization</span> <span class="k">as</span> <span class="nn">sv</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="kn">from</span> <span class="nn">alpineer</span> <span class="kn">import</span> <span class="n">misc_utils</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="kn">from</span> <span class="nn">ark.utils.spatial_lda_utils</span> <span class="kn">import</span> <span class="n">make_plot_fn</span>
-
-<span class="n">File</span> <span class="o">~</span>\<span class="n">miniforge3</span>\<span class="n">envs</span>\<span class="n">KINTSUGI</span>\<span class="n">lib</span>\<span class="n">site</span><span class="o">-</span><span class="n">packages</span>\<span class="n">spatial_lda</span>\<span class="fm">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">.online_lda</span> <span class="kn">import</span> <span class="n">LatentDirichletAllocation</span>
-
-<span class="n">File</span> <span class="o">~</span>\<span class="n">miniforge3</span>\<span class="n">envs</span>\<span class="n">KINTSUGI</span>\<span class="n">lib</span>\<span class="n">site</span><span class="o">-</span><span class="n">packages</span>\<span class="n">spatial_lda</span>\<span class="n">online_lda</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">31</span>
-<span class="g g-Whitespace">     </span><span class="mi">26</span> <span class="kn">from</span> <span class="nn">sklearn.decomposition._online_lda_fast</span> <span class="kn">import</span> <span class="p">(</span><span class="n">mean_change</span><span class="p">,</span> <span class="n">_dirichlet_expectation_1d</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">27</span>                                                     <span class="n">_dirichlet_expectation_2d</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">29</span> <span class="kn">from</span> <span class="nn">tqdm.auto</span> <span class="kn">import</span> <span class="n">tqdm</span>
-<span class="ne">---&gt; </span><span class="mi">31</span> <span class="n">EPS</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">finfo</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">)</span><span class="o">.</span><span class="n">eps</span>
-<span class="g g-Whitespace">     </span><span class="mi">34</span> <span class="k">def</span> <span class="nf">_update_doc_distribution</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">exp_topic_word_distr</span><span class="p">,</span> <span class="n">doc_topic_prior</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">35</span>                              <span class="n">max_iters</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">36</span>                              <span class="n">mean_change_tol</span><span class="p">,</span> <span class="n">cal_sstats</span><span class="p">,</span> <span class="n">random_state</span><span class="p">):</span>
-<span class="g g-Whitespace">     </span><span class="mi">37</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;E-step: update document-topic distribution.</span>
-<span class="g g-Whitespace">     </span><span class="mi">38</span><span class="sd"> </span>
-<span class="g g-Whitespace">     </span><span class="mi">39</span><span class="sd">     Parameters</span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">     </span><span class="mi">75</span><span class="sd"> </span>
-<span class="g g-Whitespace">     </span><span class="mi">76</span><span class="sd">     &quot;&quot;&quot;</span>
-
-<span class="nn">File ~\miniforge3\envs\KINTSUGI\lib\site-packages\numpy\__init__.py:353,</span> in <span class="ni">__getattr__</span><span class="nt">(attr)</span>
-<span class="g g-Whitespace">    </span><span class="mi">348</span>     <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">349</span>         <span class="sa">f</span><span class="s2">&quot;In the future `np.</span><span class="si">{</span><span class="n">attr</span><span class="si">}</span><span class="s2">` will be defined as the &quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">350</span>         <span class="s2">&quot;corresponding NumPy scalar.&quot;</span><span class="p">,</span> <span class="ne">FutureWarning</span><span class="p">,</span> <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">352</span> <span class="k">if</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">__former_attrs__</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">353</span>     <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="n">__former_attrs__</span><span class="p">[</span><span class="n">attr</span><span class="p">])</span>
-<span class="g g-Whitespace">    </span><span class="mi">355</span> <span class="k">if</span> <span class="n">attr</span> <span class="o">==</span> <span class="s1">&#39;testing&#39;</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">356</span>     <span class="kn">import</span> <span class="nn">numpy.testing</span> <span class="k">as</span> <span class="nn">testing</span>
-
-<span class="ne">AttributeError</span>: module &#39;numpy&#39; has no attribute &#39;float&#39;.
-<span class="err">`</span><span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="err">`</span> <span class="n">was</span> <span class="n">a</span> <span class="n">deprecated</span> <span class="n">alias</span> <span class="k">for</span> <span class="n">the</span> <span class="n">builtin</span> <span class="err">`</span><span class="nb">float</span><span class="err">`</span><span class="o">.</span> <span class="n">To</span> <span class="n">avoid</span> <span class="n">this</span> <span class="n">error</span> <span class="ow">in</span> <span class="n">existing</span> <span class="n">code</span><span class="p">,</span> <span class="n">use</span> <span class="err">`</span><span class="nb">float</span><span class="err">`</span> <span class="n">by</span> <span class="n">itself</span><span class="o">.</span> <span class="n">Doing</span> <span class="n">this</span> <span class="n">will</span> <span class="ow">not</span> <span class="n">modify</span> <span class="nb">any</span> <span class="n">behavior</span> <span class="ow">and</span> <span class="ow">is</span> <span class="n">safe</span><span class="o">.</span> <span class="n">If</span> <span class="n">you</span> <span class="n">specifically</span> <span class="n">wanted</span> <span class="n">the</span> <span class="n">numpy</span> <span class="n">scalar</span> <span class="nb">type</span><span class="p">,</span> <span class="n">use</span> <span class="err">`</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="err">`</span> <span class="n">here</span><span class="o">.</span>
-<span class="n">The</span> <span class="n">aliases</span> <span class="n">was</span> <span class="n">originally</span> <span class="n">deprecated</span> <span class="ow">in</span> <span class="n">NumPy</span> <span class="mf">1.20</span><span class="p">;</span> <span class="k">for</span> <span class="n">more</span> <span class="n">details</span> <span class="ow">and</span> <span class="n">guidance</span> <span class="n">see</span> <span class="n">the</span> <span class="n">original</span> <span class="n">release</span> <span class="n">note</span> <span class="n">at</span><span class="p">:</span>
-    <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">numpy</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">devdocs</span><span class="o">/</span><span class="n">release</span><span class="o">/</span><span class="mf">1.20.0</span><span class="o">-</span><span class="n">notes</span><span class="o">.</span><span class="n">html</span><span class="c1">#deprecations</span>
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;feather&#39;
 </pre></div>
 </div>
 </div>
@@ -1379,7 +1326,7 @@
         },
         kernelOptions: {
             name: "python3",
-            path: "./src\notebooks"
+            path: "./src/notebooks"
         },
         predefinedOutput: true
     }
