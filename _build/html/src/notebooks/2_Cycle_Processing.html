@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -428,6 +428,20 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">4</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">gc</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">os</span> <span class="k">as</span> <span class="nn">os</span>
+<span class="ne">----&gt; </span><span class="mi">4</span> <span class="kn">from</span> <span class="nn">tqdm.notebook</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="kn">import</span> <span class="nn">KCorrect</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;tqdm&#39;
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="define-directory-paths">
@@ -637,20 +651,6 @@ Meta folder is C:\Users\smith6jt\KINTSUGI\data\1904_CC2B_meta.
         <span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
 
 <span class="n">pbar</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "cd20c3863ded49bebfc70f51f83045c1"}</script><div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">line</span> <span class="mi">38</span>
-<span class="g g-Whitespace">     </span><span class="mi">36</span> <span class="n">cycles</span> <span class="o">=</span> <span class="n">i</span>
-<span class="g g-Whitespace">     </span><span class="mi">37</span> <span class="n">zplanes</span> <span class="o">=</span> <span class="n">zplanes_n</span><span class="o">//</span><span class="mi">2</span> 
-<span class="ne">---&gt; </span><span class="mi">38</span> <span class="n">channels</span> <span class="o">=</span> <span class="n">display_jpeg</span>
-<span class="g g-Whitespace">     </span><span class="mi">39</span> <span class="n">apply_KCorrect</span><span class="p">(</span><span class="n">image_dir</span><span class="p">,</span> <span class="n">stitch_dir</span><span class="p">,</span> <span class="n">zplanes</span><span class="p">,</span> <span class="n">cycles</span><span class="p">,</span> <span class="n">channels</span><span class="p">,</span> <span class="n">zplanes_n</span><span class="p">,</span> <span class="n">pou</span><span class="p">,</span> <span class="n">rows</span><span class="p">,</span> <span class="n">cols</span><span class="p">,</span> <span class="n">overlap_percentage</span><span class="p">,</span> <span class="n">use_gpu</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">41</span> <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span>  <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-
-<span class="ne">NameError</span>: name &#39;display_jpeg&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -1299,7 +1299,7 @@ The process for registration involves producing registration data on the rigid a
         },
         kernelOptions: {
             name: "python3",
-            path: "./src\notebooks"
+            path: "./src/notebooks"
         },
         predefinedOutput: true
     }

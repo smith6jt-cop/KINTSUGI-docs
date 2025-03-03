@@ -1,82 +1,57 @@
 Traceback (most recent call last):
-  File "C:\Users\smith6jt\miniforge3\envs\KINTSUGI\lib\site-packages\jupyter_cache\executors\utils.py", line 58, in single_nb_execution
+  File "/usr/local/python/3.12.1/lib/python3.12/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
     executenb(
-  File "C:\Users\smith6jt\miniforge3\envs\KINTSUGI\lib\site-packages\nbclient\client.py", line 1314, in execute
+  File "/home/codespace/.local/lib/python3.12/site-packages/nbclient/client.py", line 1314, in execute
     return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
-  File "C:\Users\smith6jt\miniforge3\envs\KINTSUGI\lib\site-packages\jupyter_core\utils\__init__.py", line 165, in wrapped
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/codespace/.local/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
     return loop.run_until_complete(inner)
-  File "C:\Users\smith6jt\miniforge3\envs\KINTSUGI\lib\asyncio\base_events.py", line 647, in run_until_complete
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/python/3.12.1/lib/python3.12/asyncio/base_events.py", line 684, in run_until_complete
     return future.result()
-  File "C:\Users\smith6jt\miniforge3\envs\KINTSUGI\lib\site-packages\nbclient\client.py", line 709, in async_execute
+           ^^^^^^^^^^^^^^^
+  File "/home/codespace/.local/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
     await self.async_execute_cell(
-  File "C:\Users\smith6jt\miniforge3\envs\KINTSUGI\lib\site-packages\nbclient\client.py", line 1062, in async_execute_cell
+  File "/home/codespace/.local/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
     await self._check_raise_for_error(cell, cell_index, exec_reply)
-  File "C:\Users\smith6jt\miniforge3\envs\KINTSUGI\lib\site-packages\nbclient\client.py", line 918, in _check_raise_for_error
+  File "/home/codespace/.local/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-n = 9  # Number of rows (height)
-m = 7  # Number of columns (width)
-start_cycle = 1
-end_cycle = 13
-start_channel = 1
-end_channel = 4
-pou = 13
-zplanes_n = 17
-overlap_percentage = 0.30
-workers = zplanes_n-1
-use_gpu = True
-
-# Row coordinates: each row index is repeated m times
-rows = list(chain.from_iterable(repeat(row, m) for row in range(n)))
-# Column coordinates: snake pattern for each row, going back and forth from top left going right
-cols = list(chain.from_iterable(range(m) if row % 2 == 0 else range(m - 1, -1, -1) for row in range(n)))
-
-image_dir_list = [image_dir] * (zplanes_n-1)
-stitch_dir_list = [stitch_dir] * (zplanes_n-1)
-zplanes_list =[zplanes_n] * (zplanes_n-1)
-pou_list = [pou] * (zplanes_n-1)
-rows_list = [rows] * (zplanes_n-1)
-cols_list = [cols] * (zplanes_n-1)
-overlap_percentage_list = [overlap_percentage] * (zplanes_n-1)
-use_gpu_list = [use_gpu] * (zplanes_n-1)
-
-
-total_operations = (end_cycle - start_cycle + 1) * (end_channel - start_channel + 1)
-
-with tqdm(total=total_operations, desc='Processing', unit='operation',
-                    bar_format='{desc}: {percentage:3.0f}%|{bar}| {n_fmt}/{total_fmt} [{elapsed}<{remaining}]',
-                    colour="green", position=0, leave=True) as pbar:
-    for i in range(start_cycle, end_cycle+1):
-        for j in range(start_channel, end_channel+1):
-            pbar.set_description(f'Cycle {i} Channel {j}')
-            cycles = i
-            zplanes = zplanes_n//2 
-            channels = display_jpeg
-            apply_KCorrect(image_dir, stitch_dir, zplanes, cycles, channels, zplanes_n, pou, rows, cols, overlap_percentage, use_gpu)
-            
-            if __name__ ==  '__main__':
-                with ThreadPoolExecutor(max_workers=workers) as executor:
-                    cycles = [i] * (zplanes_n-1) 
-                    zplanes =  list(range(1, zplanes_n//2))+list(range((zplanes_n//2)+1, zplanes_n+1)) 
-                    channels = [j] * (zplanes_n-1)
-                    executor.map(apply_KCorrect, image_dir_list, stitch_dir_list, zplanes, cycles, channels, zplanes_list, pou_list, rows_list, cols_list, overlap_percentage_list, use_gpu_list) 
-
-            pbar.update(1)
-        gc.collect()
-
-pbar.close()
+from concurrent.futures import ThreadPoolExecutor
+import gc
+import os as os
+from tqdm.notebook import tqdm
+import pandas as pd
+import KCorrect
+from Kstitch.stitching import stitch_images
+from glob import glob
+from skimage.io.collection import alphanumeric_key
+import numpy as np
+from skimage.io import imread_collection, imsave
+import stackview
+import numpy as np
+from itertools import chain, repeat
+import subprocess
+from datetime import datetime
+import imagej, scyjava
+import logging
+import pyopencl as cl
+import warnings
+import platform
+os_system = platform.system()
+current_dateTime = datetime.now()
 ------------------
 
 
-[1;31m---------------------------------------------------------------------------[0m
-[1;31mNameError[0m                                 Traceback (most recent call last)
-Cell [1;32mIn[6], line 38[0m
-[0;32m     36[0m cycles [38;5;241m=[39m i
-[0;32m     37[0m zplanes [38;5;241m=[39m zplanes_n[38;5;241m/[39m[38;5;241m/[39m[38;5;241m2[39m 
-[1;32m---> 38[0m channels [38;5;241m=[39m [43mdisplay_jpeg[49m
-[0;32m     39[0m apply_KCorrect(image_dir, stitch_dir, zplanes, cycles, channels, zplanes_n, pou, rows, cols, overlap_percentage, use_gpu)
-[0;32m     41[0m [38;5;28;01mif[39;00m [38;5;18m__name__[39m [38;5;241m==[39m  [38;5;124m'[39m[38;5;124m__main__[39m[38;5;124m'[39m:
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+Cell [0;32mIn[1], line 4[0m
+[1;32m      2[0m [38;5;28;01mimport[39;00m [38;5;21;01mgc[39;00m
+[1;32m      3[0m [38;5;28;01mimport[39;00m [38;5;21;01mos[39;00m [38;5;28;01mas[39;00m [38;5;21;01mos[39;00m
+[0;32m----> 4[0m [38;5;28;01mfrom[39;00m [38;5;21;01mtqdm[39;00m[38;5;21;01m.[39;00m[38;5;21;01mnotebook[39;00m [38;5;28;01mimport[39;00m tqdm
+[1;32m      5[0m [38;5;28;01mimport[39;00m [38;5;21;01mpandas[39;00m [38;5;28;01mas[39;00m [38;5;21;01mpd[39;00m
+[1;32m      6[0m [38;5;28;01mimport[39;00m [38;5;21;01mKCorrect[39;00m
 
-[1;31mNameError[0m: name 'display_jpeg' is not defined
+[0;31mModuleNotFoundError[0m: No module named 'tqdm'
 
