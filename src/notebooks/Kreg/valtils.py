@@ -88,12 +88,13 @@ def get_name(f):
     """
     To get an object's name, remove image type extension from filename
     """
+    
     f = str(f)
-    if re.search("\.", f) is None:
+    if re.search("\.", str(os.path.basename(f))) is None:
         # Extension already removed
         return f
 
-    f = os.path.split(f)[-1]
+    f = os.path.basename(f)
 
     if f.endswith(".ome.tiff") or f.endswith(".ome.tif"):
         back_slice_idx = 2
