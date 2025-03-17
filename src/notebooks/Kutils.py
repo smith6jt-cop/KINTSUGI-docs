@@ -5,6 +5,7 @@ from skimage import morphology, filters
 from skimage.exposure import rescale_intensity
 import numpy as np
 from scipy.ndimage import median_filter, uniform_filter
+import dask_image.ndfilters
 import dask.array as da
 
 
@@ -44,19 +45,19 @@ def convert_array_to_zarr(array, out_dir, name, chunk_size=(1000, 1000)):
     z[:] = array
     return z
 
-def clean(im_cl, background_threshold:int=100, smooth:bool=False, smooth_threshold:int = 100, footprint:int=1, remove_small:bool=False, small_size:int=30, View_original:bool=False):
+def clean(im_cl, backgrnd_thresh:int=100, smooth:bool=False, smooth_thresh:int = 100, footprint:int=1, remove_small:bool=False, small_size:int=30, View_original:bool=False):
 
-    background_threshold = max(1, background_threshold)
-    smooth_threshold = max(1, smooth_threshold)
+    backgrnd_thresh = max(1, backgrnd_thresh)
+    smooth_thresh = max(1, smooth_thresh)
     footprint = max(1, footprint)
     
-    processed = im_cl.copy()
+    processed = da.Array.copy(im_cl)
     
-    processed = da.where(processed <= background_threshold, 0, processed)
+    processed = da.where(processed <= backgrnd_thresh, 0, processed)
 
     if smooth:
-        transition_mask = da.where((processed < smooth_threshold), processed, 0)
-        processed = da.where(transition_mask, median_filter(processed, size=footprint), processed)
+        transition_mask = da.where((processed < smooth_thresh), processed, 0)
+        processed = da.where(transition_mask, dask_image.ndfilters.median_filter(processed, size=footprint), processed)
     
     if remove_small:
         # Create a boolean mask
